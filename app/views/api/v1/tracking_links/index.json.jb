@@ -1,0 +1,7 @@
+Rails.cache.fetch(@tracking_links.cache_key) do
+	{
+		tracking_links: @tracking_links.map do |tracking_link|
+			render('api/v1/tracking_links/partials/tracking_link', tracking_link: tracking_link)
+		end
+	}
+end

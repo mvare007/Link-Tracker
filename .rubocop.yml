@@ -1,0 +1,12 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-factory_bot
+  - rubocop-rspec
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'log/**'
+    - 'bin/**'
+    - 'tmp/**'
+  NewCops: enable

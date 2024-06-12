@@ -1,0 +1,84 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+  },
+  "servers": [
+    {
+      "url": "https://{defaultHost}",
+      "variables": {
+        "defaultHost": {
+          "default": "http://localhost:3010"
+        }
+      }
+    }
+  ],
+  "components": {
+    "schemas": {
+      "tracking_link": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "tracking_code": {
+            "type": "string"
+          },
+          "target_url": {
+            "type": "string"
+          },
+          "client_id": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "tracking_code",
+          "target_url",
+          "client_id"
+        ]
+      },
+      "client": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "store_url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "store_url"
+        ]
+      },
+      "visit": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "tracking_link_id": {
+            "type": "integer"
+          },
+          "ip_address": {
+            "type": "string"
+          },
+          "user_agent": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "tracking_link_id",
+          "ip_address",
+          "user_agent"
+        ]
+      }
+    }
+  }
+}
