@@ -3,7 +3,7 @@ module Api
     class ClientsController < ApplicationController
       # @route GET /api/v1/clients/:id (api_v1_client)
       def show
-        @client = Client.find(params[:id])
+        @client = Client.find_by(id: params[:id]) or return render json: { errors: 'Client not found' }, status: :unprocessable_entity
       end
 
       # @route POST /api/v1/clients (api_v1_clients)
