@@ -1,9 +1,9 @@
 {
-	id: tracking_link.id,
-	created_at: tracking_link.created_at,
-	updated_at: tracking_link.updated_at,
-	tracking_code: tracking_link.tracking_code,
-	target_url: tracking_link.target_url,
-	client_id: tracking_link.client_id,
-	visits_count: tracking_link.visits_count
+  id: tracking_link.id,
+  created_at: tracking_link.created_at,
+  updated_at: tracking_link.updated_at,
+  tracking_code: tracking_link.tracking_code,
+  target_url: tracking_link.target_url,
+  client_id: tracking_link.client_id,
+  visits_count: tracking_link.visits_count
 }

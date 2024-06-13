@@ -1,13 +1,13 @@
 Rails.cache.fetch(@visits.cache_key) do
-	{
-		visits: @visits.map do |visit|
-			{
-				id: visit.id,
-				created_at: visit.created_at,
-				updated_at: visit.updated_at,
-				ip_address: visit.ip_address,
-				user_agent: visit.user_agent
-			}
-		end
-	}
+  {
+    visits: @visits.map do |visit|
+              {
+                id: visit.id,
+                created_at: visit.created_at,
+                updated_at: visit.updated_at,
+                ip_address: visit.ip_address,
+                user_agent: visit.user_agent
+              }
+            end
+  }
 end
