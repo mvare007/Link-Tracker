@@ -77,6 +77,8 @@ GEM
     bullet (7.1.6)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
+    chusaku (1.2.0)
+      railties (>= 3.0)
     concurrent-ruby (1.3.3)
     crass (1.0.6)
     date (3.3.4)
@@ -85,10 +87,10 @@ GEM
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
     erubi (1.12.0)
-    factory_bot (6.2.1)
+    factory_bot (6.4.6)
       activesupport (>= 5.0.0)
-    factory_bot_rails (6.2.0)
-      factory_bot (~> 6.2.0)
+    factory_bot_rails (6.4.3)
+      factory_bot (~> 6.4)
       railties (>= 5.0.0)
     faker (3.4.1)
       i18n (>= 1.8.11, < 2)
@@ -186,7 +188,7 @@ GEM
     rdoc (6.7.0)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
-    reline (0.5.8)
+    reline (0.5.9)
       io-console (~> 0.5)
     rexml (3.3.0)
       strscan
@@ -280,6 +282,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   bullet
+  chusaku
   debug
   factory_bot_rails
   faker
