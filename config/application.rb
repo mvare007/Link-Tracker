@@ -25,3 +25,4 @@ module LinkTracker
     config.api_only = true
   end
 end
+require_relative '../lib/rswag/ui/csp'
