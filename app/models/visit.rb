@@ -3,5 +3,5 @@ class Visit < ApplicationRecord
   belongs_to :tracking_link
 
   # Validations
-  validates :ip_address, :user_agent, presence: true
+  validates :ip_address, presence: true
 end
