@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_12_152214) do
   create_table "tracking_links", force: :cascade do |t|
     t.string "tracking_code", null: false
     t.integer "client_id", null: false
-    t.string "target_url", null: false
     t.integer "visits_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_12_152214) do
   create_table "visits", force: :cascade do |t|
     t.integer "tracking_link_id", null: false
     t.string "ip_address", null: false
-    t.string "user_agent", null: false
+    t.string "user_agent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tracking_link_id"], name: "index_visits_on_tracking_link_id"

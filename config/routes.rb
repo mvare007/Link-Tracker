@@ -6,12 +6,14 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :clients, only: %i[create show]
 
-      resources :tracking_links, only: %i[index create show] do
+      resources :tracking_links, only: %i[index create show], param: :tracking_code do
         member do
           get :redirect
-          get :stats
+          get :tracking_data
         end
       end
     end
   end
+
+  get '/:tracking_code', to: 'links#redirect'
 end
