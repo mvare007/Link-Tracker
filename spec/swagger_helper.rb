@@ -16,18 +16,27 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', openapi_spec: 'v2/swagger.json'
   config.openapi_specs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      openapi: '3.0.3',
       info: {
-        title: 'API V1',
+        title: 'Link Tracker API',
         version: 'v1'
       },
       paths: {},
+      tags: [
+        { name: 'Tracking Links' },
+        { name: 'Clients' },
+        { name: 'Links' }
+      ],
+      host: 'localhost:3010',
       servers: [
         {
-          url: 'https://{defaultHost}',
+          url: '{protocol}://{defaultHost}',
           variables: {
+            protocol: {
+              default: :http
+            },
             defaultHost: {
-              default: 'http://localhost:3010'
+              default: 'localhost:3010'
             }
           }
         }
@@ -38,15 +47,13 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer },
-              tracking_code: { type: :string, description: 'Unique code to track visits'},
-              target_url: { type: :string, description: 'URL to redirect to'},
+              tracking_code: { type: :string, description: 'Unique code to track visits' },
               client_id: { type: :integer }
             },
-            required: %w[id tracking_code target_url client_id],
+            required: %w[id tracking_code client_id],
             example: {
               id: 1,
               tracking_code: 'abc123',
-              target_url: 'https://example.com',
               client_id: 1
             }
           },
@@ -54,11 +61,13 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer },
-              store_url: { type: :string, description: 'URL of the client store' }
+              name: { type: :string, description: 'Name of the client' },
+              store_url: { type: :string, description: 'URL of the client store to redirect to' }
             },
-            required: %w[id store_url],
+            required: %w[id name store_url],
             example: {
               id: 1,
+              name: 'Capsule Corp.',
               store_url: 'example.com'
             }
           },
@@ -66,16 +75,31 @@ RSpec.configure do |config|
             type: :object,
             properties: {
               id: { type: :integer },
-              tracking_link_id: { type: :integer },
               ip_address: { type: :string },
               user_agent: { type: :string }
             },
-            required: %w[id tracking_link_id ip_address user_agent],
+            required: %w[id ip_address user_agent],
             example: {
               id: 1,
-              tracking_link_id: 1,
               ip_address: '116.107.5.114',
               user_agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+            }
+          },
+          error_object: {
+            type: :object,
+            properties: {
+              errors: {
+                oneOf: [
+                  { type: :string },
+                  {
+                    type: :object,
+                    properties: {
+                      field: { type: :array, items: { type: :string }, minItems: 0 }
+                    }
+                  }
+                ],
+                description: 'Object containing error messages for each field'
+              }
             }
           }
         }

@@ -1,17 +1,375 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
   "info": {
-    "title": "API V1",
+    "title": "Link Tracker API",
     "version": "v1"
   },
   "paths": {
+    "/api/v1/clients": {
+      "post": {
+        "summary": "Creates a client",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "client": {
+                      "$ref": "#/components/schemas/client"
+                    }
+                  },
+                  "required": [
+                    "client"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/client"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/{id}": {
+      "get": {
+        "summary": "Retrieves a client",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "client": {
+                      "$ref": "#/components/schemas/client"
+                    }
+                  },
+                  "required": [
+                    "client"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tracking_links": {
+      "get": {
+        "summary": "Retrieves a paginated list of tracking_links",
+        "tags": [
+          "Tracking Links"
+        ],
+        "parameters": [
+          {
+            "name": "store_url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tracking_links": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/tracking_link"
+                      }
+                    }
+                  },
+                  "required": [
+                    "tracking_links"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a tracking_link",
+        "tags": [
+          "Tracking Links"
+        ],
+        "parameters": [
+          {
+            "name": "store_url",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tracking_link": {
+                      "$ref": "#/components/schemas/tracking_link"
+                    }
+                  },
+                  "required": [
+                    "tracking_link"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tracking_links/{tracking_code}": {
+      "get": {
+        "summary": "Retrieves a tracking_link",
+        "tags": [
+          "Tracking Links"
+        ],
+        "parameters": [
+          {
+            "name": "tracking_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "tracking_link": {
+                      "$ref": "#/components/schemas/tracking_link"
+                    }
+                  },
+                  "required": [
+                    "tracking_link"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tracking_links/{tracking_code}/tracking_data": {
+      "get": {
+        "summary": "Retrieves a paginated list of visits for a tracking_link",
+        "tags": [
+          "Tracking Links"
+        ],
+        "parameters": [
+          {
+            "name": "tracking_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "visits": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/visit"
+                      }
+                    }
+                  },
+                  "required": [
+                    "visits"
+                  ]
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{tracking_code}": {
+      "get": {
+        "summary": "Creates a visit and redirects to the client store url",
+        "tags": [
+          "Links"
+        ],
+        "parameters": [
+          {
+            "name": "tracking_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "302": {
+            "description": "found"
+          },
+          "422": {
+            "description": "unprocessable entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   },
+  "tags": [
+    {
+      "name": "Tracking Links"
+    },
+    {
+      "name": "Clients"
+    },
+    {
+      "name": "Links"
+    }
+  ],
+  "host": "localhost:3010",
   "servers": [
     {
-      "url": "https://{defaultHost}",
+      "url": "{protocol}://{defaultHost}",
       "variables": {
+        "protocol": {
+          "default": "http"
+        },
         "defaultHost": {
-          "default": "http://localhost:3010"
+          "default": "localhost:3010"
         }
       }
     }
@@ -25,10 +383,8 @@
             "type": "integer"
           },
           "tracking_code": {
-            "type": "string"
-          },
-          "target_url": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique code to track visits"
           },
           "client_id": {
             "type": "integer"
@@ -37,9 +393,13 @@
         "required": [
           "id",
           "tracking_code",
-          "target_url",
           "client_id"
-        ]
+        ],
+        "example": {
+          "id": 1,
+          "tracking_code": "abc123",
+          "client_id": 1
+        }
       },
       "client": {
         "type": "object",
@@ -47,22 +407,30 @@
           "id": {
             "type": "integer"
           },
+          "name": {
+            "type": "string",
+            "description": "Name of the client"
+          },
           "store_url": {
-            "type": "string"
+            "type": "string",
+            "description": "URL of the client store to redirect to"
           }
         },
         "required": [
           "id",
+          "name",
           "store_url"
-        ]
+        ],
+        "example": {
+          "id": 1,
+          "name": "Capsule Corp.",
+          "store_url": "example.com"
+        }
       },
       "visit": {
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer"
-          },
-          "tracking_link_id": {
             "type": "integer"
           },
           "ip_address": {
@@ -74,10 +442,39 @@
         },
         "required": [
           "id",
-          "tracking_link_id",
           "ip_address",
           "user_agent"
-        ]
+        ],
+        "example": {
+          "id": 1,
+          "ip_address": "116.107.5.114",
+          "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3"
+        }
+      },
+      "error_object": {
+        "type": "object",
+        "properties": {
+          "errors": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "field": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "minItems": 0
+                  }
+                }
+              }
+            ],
+            "description": "Object containing error messages for each field"
+          }
+        }
       }
     }
   }
