@@ -1,5 +1,5 @@
 Rails.cache.fetch(@tracking_link.cache_key) do
-	{
-		tracking_link: render('api/v1/tracking_links/partials/tracking_link', tracking_link: @tracking_link)
-	}
+  {
+    tracking_link: render('api/v1/tracking_links/partials/tracking_link', tracking_link: @tracking_link)
+  }
 end
