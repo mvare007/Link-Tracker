@@ -1,11 +1,11 @@
 Rails.cache.fetch(@client.cache_key) do
-	{
-		client: {
-			id: @client.id,
-			name: @client.name,
-			store_url: @client.store_url,
-			created_at: @client.created_at,
-			updated_at: @client.updated_at
-		}
-	}
+  {
+    client: {
+      id: @client.id,
+      name: @client.name,
+      store_url: @client.store_url,
+      created_at: @client.created_at,
+      updated_at: @client.updated_at
+    }
+  }
 end
