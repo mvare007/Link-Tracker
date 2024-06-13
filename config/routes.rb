@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :clients, only: %i[create show]
 
-      resources :tracking_links, only: %i[index show] do
+      resources :tracking_links, only: %i[index create show] do
         member do
           get :redirect
           get :stats
