@@ -3,7 +3,6 @@ class CreateTrackingLinks < ActiveRecord::Migration[7.0]
     create_table :tracking_links do |t|
       t.string :tracking_code, null: false, index: true
       t.references :client, null: false, foreign_key: true
-      t.string :target_url, null: false
       t.integer :visits_count, default: 0
 
       t.timestamps

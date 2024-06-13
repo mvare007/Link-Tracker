@@ -3,7 +3,7 @@ class CreateVisits < ActiveRecord::Migration[7.0]
     create_table :visits do |t|
       t.references :tracking_link, null: false, foreign_key: true
       t.string :ip_address, null: false
-      t.string :user_agent, null: false
+      t.string :user_agent
 
       t.timestamps
     end
