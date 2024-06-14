@@ -17,6 +17,18 @@ Go to the project directory
   cd Link-Tracker
 ```
 
+Install ruby 3.3.1 using rbenv
+
+```bash
+	rbenv install 3.3.1
+```
+
+Set the local ruby version to 3.3.1
+
+```bash
+	rbenv local 3.3.1
+```
+
 Install gems
 
 ```bash
