@@ -1,7 +1,7 @@
 class TrackingLink < ApplicationRecord
   # Associations
   belongs_to :client
-  has_many :visits, dependent: :destroy, counter_cache: true
+  has_many :visits, dependent: :destroy
 
   # Validations
   validates :tracking_code, presence: true, length: { maximum: 255 }
