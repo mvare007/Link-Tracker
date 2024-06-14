@@ -3,6 +3,7 @@
 ARG RUBY_VERSION=3.3.1
 FROM docker.io/library/ruby:$RUBY_VERSION-slim as base
 
+# BuildKit required https://docs.docker.com/build/buildkit/
 # OS Level Dependencies
 RUN --mount=type=cache,target=/var/cache/apt \
   --mount=type=cache,target=/var/lib/apt,sharing=locked \
