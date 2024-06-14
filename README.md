@@ -65,4 +65,4 @@ The Swagger UI provides an interactive interface where you can explore all avail
 #### Note:
 
 Swagger UI does not follow redirects, but you can observe them in your browser's developer tools.
-To fully test and observe redirects, I recommend using an API client like Postman or cURL.
+To fully test and observe redirects, use your browser.
