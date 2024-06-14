@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+echo "bundle install..."
+bundle check || bundle install --jobs 4
+
+# If running the rails server then create or migrate existing database
+if [ "${*}" == "./bin/rails server -b 0.0.0.0" ]; then
+  ./bin/rails db:prepare
+fi
+
+# Then exec the container's main process (what's set as CMD in the Dockerfile).
+exec "$@"
