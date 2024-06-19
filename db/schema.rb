@@ -26,8 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_12_152214) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["client_id"], name: "index_tracking_links_on_client_id"
-    t.index ["tracking_code", "client_id"], name: "index_tracking_links_on_tracking_code_and_client_id", unique: true
-    t.index ["tracking_code"], name: "index_tracking_links_on_tracking_code"
+    t.index ["tracking_code"], name: "index_tracking_links_on_tracking_code", unique: true
   end
 
   create_table "visits", force: :cascade do |t|
