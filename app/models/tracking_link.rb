@@ -4,8 +4,7 @@ class TrackingLink < ApplicationRecord
   has_many :visits, dependent: :destroy
 
   # Validations
-  validates :tracking_code, presence: true, length: { maximum: 255 }
-  validates :tracking_code, uniqueness: { scope: :client_id }
+  validates :tracking_code, presence: true, length: { maximum: 255 }, uniqueness: true
 
   # Delegates
   delegate :store_url, to: :client, prefix: true
@@ -19,6 +18,6 @@ class TrackingLink < ApplicationRecord
   private
 
   def generate_tracking_code
-    self.tracking_code ||= SecureRandom.hex(5)
+    self.tracking_code ||= TrackingCodeGenerator.call
   end
 end

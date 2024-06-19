@@ -23,7 +23,10 @@ RSpec.describe 'Tracking Links API V1 Endpoints' do
 
         # rubocop:disable FactoryBot/ExcessiveCreateList
         before do
-          create_list(:tracking_link, 40, client:)
+          tracking_links = create_list(:tracking_link, 40, client:)
+          tracking_links.each do |tracking_link|
+            create_list(:visit, 40, tracking_link:)
+          end
         end
         # rubocop:enable FactoryBot/ExcessiveCreateList
 
@@ -123,7 +126,7 @@ RSpec.describe 'Tracking Links API V1 Endpoints' do
 
         # rubocop:disable FactoryBot/ExcessiveCreateList
         before do
-          create_list(:visit, 40, tracking_link:)
+          create_list(:visit, 20, tracking_link:)
         end
         # rubocop:enable FactoryBot/ExcessiveCreateList
 

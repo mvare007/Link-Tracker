@@ -11,12 +11,12 @@ module Api
       end
 
       # @route GET /api/v1/tracking_links/:tracking_code (api_v1_tracking_link)
-      def show
-      end
+      def show; end
 
       # @route POST /api/v1/tracking_links (api_v1_tracking_links)
       def create
-        @tracking_link = TrackingLink.new(client: @client)
+        @tracking_link = TrackingLink.new(tracking_link_params)
+        @tracking_link.client = @client
         if @tracking_link.save
           render :show, status: :created
         else
@@ -36,6 +36,10 @@ module Api
         @tracking_link = TrackingLink.find_by(tracking_code: params[:tracking_code])
         @tracking_link.present? or return render json: { errors: 'Tracking Link not found' },
                                                  status: :unprocessable_entity
+      end
+
+      def tracking_link_params
+        params.fetch(:tracking_link, {}).permit(:tracking_code)
       end
 
       def set_client
