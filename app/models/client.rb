@@ -16,6 +16,8 @@ class Client < ApplicationRecord
 
     uri = URI.parse(store_url)
     uri.scheme = 'https' if uri.scheme.nil?
-    uri.to_s if %w[http https].include?(uri.scheme)
+    uri = uri.to_s if %w[http https].include?(uri.scheme)
+    
+    self.store_url = uri
   end
 end
